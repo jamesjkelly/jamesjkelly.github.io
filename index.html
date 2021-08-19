@@ -8,9 +8,21 @@
       <meta content='width=device-width, initial-scale=1' name='viewport'/>
       <meta content='Adobe Site Catalyst, Ensighten, Tealium, HTML, CSS, XML, JavaScript, JSON, Big Data, Data Feeds,  Support, Linux, Mac, Windows, Analytics, Microsoft, MySQL, Adobe, Dreamweaver, PHP' name='keywords'/>
  
-     
-permissions-policy: interest-cohort=()
-<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+ 
+         addEventListener('fetch', event=> {
+        event.respondWith(handleRequest(event.request))
+    })
+    async function handleRequest(request) {
+        let response=await fetch(request)
+        let newHeaders=new Headers(response.headers)
+        newHeaders.set("Permissions-Policy","interest-cohort=()")
+        return new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: newHeaders
+        })
+    }
+ <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
 
 
 
